@@ -1,0 +1,25 @@
+# Maintainer: Nate DeMare <24489063+nd925a@users.noreply.github.com>
+
+pkgname=kraftui
+pkgver=4.6.22
+pkgrel=1
+pkgdesc="A professional UI prototyping tool for the high-fidelity frontend web and mobile development."
+arch=('x86_64')
+url="https://github.com/loouislow81/kraft.ui"
+depends=("nodejs")
+makedepends=("npm")
+license=('MIT')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/loouislow81/kraft.ui/releases/download/4.6.22/kraft_community_4.6.22_linux_x64.tar.gz")
+noextract=("$pkgname-$pkgver.tar.gz")
+sha256sums=('55123ccb634e128fb5e27ec1737b6bc0de87b426c88d662100a895fe513f434d')
+
+#build() {
+#	cd "$pkgname-$pkgver"
+#	cmake -DCMAKE_INSTALL_PREFIX=/usr ./
+#	make
+#}
+
+package() {
+    npm install -g --user root --prefix "$pkgdir/usr" "$srcdir/$pkgname-$pkgver.tar.gz"
+    chown -R root:root "$pkgdir"
+}
